@@ -1,0 +1,9 @@
+{
+  "description": "How to include JWT token in API requests",
+  "header_name": "Authorization",
+  "header_value_format": "Bearer <token>",
+  "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTcwNTMyNDgwMCwiZXhwIjoxNzA1MzI4NDAwfQ.example_signature",
+  "curl_example": "curl -H 'Authorization: Bearer YOUR_TOKEN_HERE' http://localhost:3000/meetings",
+  "note": "Get a token by logging in via POST /users/login endpoint"
+}
+

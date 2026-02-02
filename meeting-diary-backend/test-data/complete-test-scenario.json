@@ -1,0 +1,132 @@
+{
+  "description": "Complete test scenario flow for Meeting Diary API",
+  "scenario": "Create a user, login, create a meeting, add participants, and manage them",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create a new user",
+      "method": "POST",
+      "endpoint": "/users/add",
+      "request_file": "users/signup-request.json",
+      "expected_status": 201,
+      "response_file": "users/signup-response.json",
+      "note": "Save the user_id from response for next steps"
+    },
+    {
+      "step": 2,
+      "description": "Login to get authentication token",
+      "method": "POST",
+      "endpoint": "/users/login",
+      "request_file": "users/login-request.json",
+      "expected_status": 200,
+      "response_file": "users/login-response.json",
+      "note": "Save the token from response - needed for all subsequent requests"
+    },
+    {
+      "step": 3,
+      "description": "Create a new meeting",
+      "method": "POST",
+      "endpoint": "/meetings/add",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>",
+        "Content-Type": "application/json"
+      },
+      "request_file": "meetings/create-meeting-request.json",
+      "expected_status": 201,
+      "response_file": "meetings/create-meeting-response.json",
+      "note": "Save the meeting_id from response for next steps"
+    },
+    {
+      "step": 4,
+      "description": "Get all meetings for a user",
+      "method": "GET",
+      "endpoint": "/meetings/user/1?date=2024-01-20",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>"
+      },
+      "expected_status": 200,
+      "response_file": "meetings/get-meetings-by-user-response.json"
+    },
+    {
+      "step": 5,
+      "description": "Get participants for a meeting",
+      "method": "GET",
+      "endpoint": "/participants/meeting/1",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>"
+      },
+      "expected_status": 200,
+      "response_file": "participants/get-participants-by-meeting-response.json"
+    },
+    {
+      "step": 6,
+      "description": "Update participant status",
+      "method": "POST",
+      "endpoint": "/participants/update",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>",
+        "Content-Type": "application/json"
+      },
+      "request_file": "participants/update-participant-status-request.json",
+      "expected_status": 200,
+      "response_file": "participants/update-participant-status-response.json"
+    },
+    {
+      "step": 7,
+      "description": "Get users not in meeting",
+      "method": "GET",
+      "endpoint": "/participants/not-in-meeting/1",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>"
+      },
+      "expected_status": 200,
+      "response_file": "participants/get-users-not-in-meeting-response.json"
+    },
+    {
+      "step": 8,
+      "description": "Add a new participant",
+      "method": "POST",
+      "endpoint": "/participants/add",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>",
+        "Content-Type": "application/json"
+      },
+      "request_file": "participants/add-participant-request.json",
+      "expected_status": 201,
+      "response_file": "participants/add-participant-response.json"
+    },
+    {
+      "step": 9,
+      "description": "Update meeting details",
+      "method": "POST",
+      "endpoint": "/meetings/update",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>",
+        "Content-Type": "application/json"
+      },
+      "request_file": "meetings/update-meeting-request.json",
+      "expected_status": 200,
+      "response_file": "meetings/update-meeting-response.json"
+    },
+    {
+      "step": 10,
+      "description": "Delete a participant",
+      "method": "DELETE",
+      "endpoint": "/participants",
+      "headers": {
+        "Authorization": "Bearer <token_from_step_2>",
+        "Content-Type": "application/json"
+      },
+      "request_file": "participants/delete-participant-request.json",
+      "expected_status": 200,
+      "response_file": "participants/delete-participant-response.json"
+    }
+  ],
+  "notes": [
+    "Replace placeholder values (user_id, meeting_id, token) with actual values from previous responses",
+    "All endpoints except /users/add and /users/login require authentication",
+    "Date format: YYYY-MM-DD, Time format: HH:MM:SS",
+    "Participant status values: 'pending', 'accepted', 'arrived', 'absent'"
+  ]
+}
+

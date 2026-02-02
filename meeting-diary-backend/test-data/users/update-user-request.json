@@ -1,0 +1,9 @@
+{
+  "user": {
+    "user_id": 1,
+    "name": "Updated",
+    "last_name": "Name",
+    "password": "newpassword123"
+  }
+}
+

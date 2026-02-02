@@ -1,0 +1,27 @@
+{
+  "participant_not_found": {
+    "status": 404,
+    "body": {
+      "message": "Participant not found"
+    }
+  },
+  "missing_meeting_user_id": {
+    "status": 500,
+    "body": {
+      "message": "Meeting ID and User ID are required"
+    }
+  },
+  "invalid_status": {
+    "status": 500,
+    "body": {
+      "message": "Invalid status"
+    }
+  },
+  "missing_status": {
+    "status": 500,
+    "body": {
+      "message": "Participant ID and status are required"
+    }
+  }
+}
+

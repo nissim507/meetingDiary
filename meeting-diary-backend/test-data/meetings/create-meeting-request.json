@@ -1,0 +1,13 @@
+{
+  "meeting": {
+    "title": "Team Standup",
+    "date": "2024-01-20",
+    "time": "09:00:00",
+    "end_time": "09:30:00",
+    "place": "Conference Room A",
+    "owner_user": 1,
+    "notes": "Daily standup meeting to discuss progress",
+    "participants": [2, 3]
+  }
+}
+

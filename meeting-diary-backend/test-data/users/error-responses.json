@@ -1,0 +1,33 @@
+{
+  "user_already_exists": {
+    "status": 409,
+    "body": {
+      "message": "User already exists"
+    }
+  },
+  "missing_user_data": {
+    "status": 400,
+    "body": {
+      "message": "Missing user data"
+    }
+  },
+  "invalid_credentials": {
+    "status": 500,
+    "body": {
+      "message": "Invalid credentials"
+    }
+  },
+  "user_not_found": {
+    "status": 404,
+    "body": {
+      "message": "User not found"
+    }
+  },
+  "missing_username_password": {
+    "status": 400,
+    "body": {
+      "message": "Username and password are required"
+    }
+  }
+}
+

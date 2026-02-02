@@ -1,0 +1,15 @@
+{
+  "description": "Sample JWT token structure (decoded)",
+  "header": {
+    "alg": "HS256",
+    "typ": "JWT"
+  },
+  "payload": {
+    "id": 1,
+    "username": "testuser",
+    "iat": 1705324800,
+    "exp": 1705328400
+  },
+  "note": "This is a decoded example. Actual tokens are base64-encoded strings like: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+

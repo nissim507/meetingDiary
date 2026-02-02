@@ -1,0 +1,14 @@
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTcwNTMyNDgwMCwiZXhwIjoxNzA1MzI4NDAwfQ.example_signature",
+  "user": {
+    "user_id": 1,
+    "username": "testuser",
+    "password": "$2b$10$hashedPasswordHere...",
+    "name": "Test",
+    "last_name": "User",
+    "email": "testuser@example.com",
+    "created_at": "2024-01-15T10:30:00.000Z",
+    "updated_at": "2024-01-15T10:30:00.000Z"
+  }
+}
+

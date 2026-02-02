@@ -1,0 +1,39 @@
+[
+  {
+    "meeting_id": 1,
+    "title": "Team Standup",
+    "date": "2024-01-20",
+    "time": "09:00:00",
+    "end_time": "09:30:00",
+    "place": "Conference Room A",
+    "owner_user": 1,
+    "notes": "Daily standup meeting",
+    "created_at": "2024-01-15T10:30:00.000Z",
+    "updated_at": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "meeting_id": 2,
+    "title": "Project Planning",
+    "date": "2024-01-22",
+    "time": "14:00:00",
+    "end_time": "16:00:00",
+    "place": "Virtual Meeting",
+    "owner_user": 2,
+    "notes": "Quarterly planning session",
+    "created_at": "2024-01-15T11:00:00.000Z",
+    "updated_at": "2024-01-15T11:00:00.000Z"
+  },
+  {
+    "meeting_id": 3,
+    "title": "Client Review",
+    "date": "2024-01-25",
+    "time": "15:00:00",
+    "end_time": "16:00:00",
+    "place": "Client Office",
+    "owner_user": 1,
+    "notes": "Monthly client review meeting",
+    "created_at": "2024-01-16T09:00:00.000Z",
+    "updated_at": "2024-01-16T09:00:00.000Z"
+  }
+]
+

@@ -1,0 +1,21 @@
+{
+  "meeting_not_found": {
+    "status": 404,
+    "body": {
+      "message": "Meeting not found"
+    }
+  },
+  "missing_meeting_data": {
+    "status": 500,
+    "body": {
+      "message": "Missing meeting data"
+    }
+  },
+  "failed_to_create_meeting": {
+    "status": 500,
+    "body": {
+      "message": "Failed to create a meeting"
+    }
+  }
+}
+

@@ -1,0 +1,13 @@
+{
+  "meeting_id": 1,
+  "title": "Team Standup",
+  "date": "2024-01-21",
+  "time": "10:00:00",
+  "end_time": "10:30:00",
+  "place": "Virtual Meeting",
+  "owner_user": 1,
+  "notes": "Updated: Changed to virtual meeting",
+  "created_at": "2024-01-15T10:30:00.000Z",
+  "updated_at": "2024-01-15T11:00:00.000Z"
+}
+

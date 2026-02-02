@@ -1,0 +1,42 @@
+-- Meeting Diary Database Seed Data (SQL-only version)
+-- This script inserts sample data for development and testing.
+-- It is idempotent and can be run multiple times safely.
+-- 
+-- IMPORTANT: This script does NOT create users with passwords because
+-- passwords must be hashed with bcrypt. For proper seed data with
+-- password hashing, use the Node.js script: 03_generate_seed.js
+-- 
+-- Usage: psql -U postgres -d meeting_diary -f 02_seed_data.sql
+-- OR use: node sql/03_generate_seed.js (recommended)
+
+-- ============================================
+-- SAMPLE MEETINGS (requires users to exist first)
+-- ============================================
+-- These will only work if you have created users first through the API
+-- or using the Node.js seed script (03_generate_seed.js)
+
+-- Example: Insert a meeting for a user (replace user_id with actual ID)
+-- INSERT INTO meetings (title, date, time, end_time, place, owner_user, notes)
+-- SELECT 
+--     'Team Standup',
+--     CURRENT_DATE,
+--     '09:00:00',
+--     '09:30:00',
+--     'Conference Room A',
+--     u.user_id,
+--     'Daily standup meeting'
+-- FROM users u
+-- WHERE u.username = 'admin'
+-- ON CONFLICT DO NOTHING;
+
+-- ============================================
+-- NOTES
+-- ============================================
+-- For proper seed data with bcrypt password hashing, use:
+--   node sql/03_generate_seed.js
+-- 
+-- This will create test users with password: "password123"
+-- and sample meetings/participants.
+-- 
+-- Alternatively, create users through the API which will hash passwords automatically.
+
