@@ -3,9 +3,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 def test_login_meeting_diary():
-    driver = webdriver.Chrome()
+    # --- Headless Chrome setup ---
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # run without GUI
+    chrome_options.add_argument("--no-sandbox")  # required for some Linux environments
+    chrome_options.add_argument("--disable-dev-shm-usage")  # prevent memory issues in containers
+
+    driver = webdriver.Chrome(options=chrome_options)  # use headless options
+
     try:
         driver.get("http://localhost:5173")  # make sure your frontend is running
 
