@@ -1,20 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'selenium/standalone-chrome'
+            args '--shm-size=2g'
+        }
+    }
 
     stages {
 
-        stage('Install Python') {
+        stage('Install Python Packages') {
             steps {
-                sh '''
-                apt update
-                apt install -y python3 python3-pip
-                '''
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                sh 'pip3 install -r requirements.txt'
+                sh 'pip install -r requirements.txt'
             }
         }
 
