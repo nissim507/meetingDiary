@@ -3,21 +3,15 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/nissim507/meetingDiary.git'
-            }
-        }
-
         stage('Install Python Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                sh 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Selenium Tests') {
             steps {
-                bat 'pytest tests'
+                sh 'pytest tests'
             }
         }
 
