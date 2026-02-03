@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "$PATH:/var/jenkins_home/.local/bin"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -13,7 +17,6 @@ pipeline {
                 sh '''
                     python3 -m pip install --user --upgrade pip --break-system-packages
                     python3 -m pip install --user -r requirements.txt --break-system-packages
-                    export PATH=$PATH:/var/jenkins_home/.local/bin
                 '''
             }
         }
@@ -21,7 +24,7 @@ pipeline {
         stage('Run Selenium Tests') {
             steps {
                 sh '''
-                    python3 test_login.py
+                    python3 -m pytest tests/ --maxfail=1 --disable-warnings -q
                 '''
             }
         }
