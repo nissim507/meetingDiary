@@ -1,14 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        PATH = "$HOME/.local/bin:$PATH"
-    }
-
     stages {
-        stage('Checkout SCM') {
+        stage('Checkout') {
             steps {
-                git url: 'https://github.com/nissim507/meetingDiary.git', branch: 'main'
+                git branch: 'main', url: 'https://github.com/nissim507/meetingDiary.git'
             }
         }
 
@@ -17,15 +13,15 @@ pipeline {
                 sh '''
                     python3 -m pip install --user --upgrade pip --break-system-packages
                     python3 -m pip install --user -r requirements.txt --break-system-packages
+                    export PATH=$PATH:/var/jenkins_home/.local/bin
                 '''
             }
         }
 
-        stage('Run Selenium Tests Headless') {
+        stage('Run Selenium Tests') {
             steps {
-                // Run pytest; make sure your tests use headless mode
                 sh '''
-                    python3 -m pytest tests/ --headless
+                    python3 test_login.py
                 '''
             }
         }
