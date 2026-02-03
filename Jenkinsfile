@@ -1,24 +1,24 @@
 pipeline {
-    agent {
-        docker {
-            image 'selenium/standalone-chrome'
-            args '--shm-size=2g'
-        }
-    }
+    agent any
 
     stages {
-
-        stage('Install Python Packages') {
+        stage('Checkout') {
             steps {
-                sh 'pip install -r requirements.txt'
+                git 'https://github.com/nissim507/meetingDiary.git'
             }
         }
 
-        stage('Run Tests') {
+        stage('Install Dependencies') {
             steps {
-                sh 'pytest tests'
+                bat 'pip install -r requirements.txt'
             }
         }
 
+        stage('Run Selenium Tests') {
+            steps {
+                // Run tests using pytest
+                bat 'pytest tests'
+            }
+        }
     }
 }
