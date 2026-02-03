@@ -1,12 +1,13 @@
 pipeline {
     agent any
 
-    stage('Checkout') {
-    steps {
-        git branch: 'main',
-            url: 'https://github.com/nissim507/meetingDiary.git'
-    }
-}
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/nissim507/meetingDiary.git'
+            }
+        }
 
 
         stage('Install Dependencies') {
