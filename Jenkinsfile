@@ -1,34 +1,40 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "${env.WORKSPACE}/.local/bin:${env.PATH}"
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/nissim507/meetingDiary.git'
+                git branch: 'main', url: 'https://github.com/nissim507/meetingDiary.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install Python Dependencies') {
             steps {
                 sh '''
-                # Upgrade pip for the current user
                 python3 -m pip install --user --upgrade pip --break-system-packages
-
-                # Install all requirements for the current user
                 python3 -m pip install --user -r requirements.txt --break-system-packages
-
-                # Add local bin to PATH so we can use chromedriver or other binaries
-                export PATH=$PATH:~/.local/bin
                 '''
             }
         }
 
-        stage('Install ChromeDriver') {
+        stage('Install Google Chrome') {
             steps {
                 sh '''
-                # Install chromedriver in user space
-                CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1)
+                # Download and install Chrome stable in the workspace
+                wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                apt-get update && apt-get install -y ./google-chrome-stable_current_amd64.deb || true
+                '''
+            }
+        }
+
+        stage('Install Matching ChromeDriver') {
+            steps {
+                sh '''
+                CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d. -f1)
                 wget -q https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip
                 unzip -o chromedriver_linux64.zip -d ~/.local/bin
                 chmod +x ~/.local/bin/chromedriver
@@ -40,7 +46,6 @@ pipeline {
         stage('Run Selenium Tests') {
             steps {
                 sh '''
-                # Run tests using user-space Python
                 export PATH=$PATH:~/.local/bin
                 python3 -m pytest tests/
                 '''
