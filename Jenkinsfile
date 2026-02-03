@@ -1,9 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'selenium-python-agent:latest' // Your custom Docker image
+            args '-u root:root'                  // Run as root inside container
+        }
+    }
 
     environment {
-        VENV_DIR = "${WORKSPACE}/venv"
-        PATH = "${VENV_DIR}/bin:${env.PATH}" // use virtual environment python/pip
+        PATH = "$PATH:/usr/local/bin"           // Ensure chromedriver is in PATH
     }
 
     stages {
@@ -17,12 +21,11 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 sh '''
-                    # create virtual environment if not exists
-                    if [ ! -d "${VENV_DIR}" ]; then
-                        python3 -m venv ${VENV_DIR}
-                    fi
-                    # upgrade pip inside venv
-                    ${VENV_DIR}/bin/pip install --upgrade pip
+                # Create virtual environment if not exists
+                [ ! -d venv ] && python3 -m venv venv || echo "venv exists"
+                # Activate and upgrade pip
+                . venv/bin/activate
+                pip install --upgrade pip
                 '''
             }
         }
@@ -30,7 +33,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    ${VENV_DIR}/bin/pip install -r requirements.txt
+                . venv/bin/activate
+                pip install -r requirements.txt
                 '''
             }
         }
@@ -38,9 +42,16 @@ pipeline {
         stage('Run Selenium Tests') {
             steps {
                 sh '''
-                    ${VENV_DIR}/bin/python -m pytest tests/ --disable-warnings
+                . venv/bin/activate
+                python -m pytest tests/
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline finished"
         }
     }
 }
