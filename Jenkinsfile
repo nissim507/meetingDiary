@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PATH = "$PATH:/usr/local/bin"  // Ensure chromedriver is in PATH
+        PATH = "$PATH:/usr/local/bin"
     }
 
     stages {
@@ -16,15 +16,13 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 sh '''
-                # Make sure python3-venv is installed
-                apt-get update && apt-get install -y python3-venv unzip wget
+                # Create virtual environment if it doesn't exist
+                if [ ! -d venv ]; then
+                    python3 -m venv venv
+                fi
 
-                # Create virtual environment if not exists
-                [ ! -d venv ] && python3 -m venv venv || echo "venv exists"
-
-                # Activate and upgrade pip
-                . venv/bin/activate
-                pip install --upgrade pip
+                # Upgrade pip inside virtualenv
+                ./venv/bin/pip install --upgrade pip --break-system-packages
                 '''
             }
         }
@@ -32,8 +30,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                . venv/bin/activate
-                pip install -r requirements.txt --break-system-packages
+                # Activate virtualenv and install requirements
+                ./venv/bin/pip install -r requirements.txt --break-system-packages
                 '''
             }
         }
@@ -41,10 +39,13 @@ pipeline {
         stage('Install ChromeDriver') {
             steps {
                 sh '''
+                # Get Chrome major version
                 CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1)
-                wget https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip
-                unzip chromedriver_linux64.zip -d /usr/local/bin/
-                chmod +x /usr/local/bin/chromedriver
+
+                # Download and install chromedriver
+                wget -q https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip
+                unzip -o chromedriver_linux64.zip -d ./venv/bin
+                chmod +x ./venv/bin/chromedriver
                 '''
             }
         }
@@ -52,8 +53,8 @@ pipeline {
         stage('Run Selenium Tests') {
             steps {
                 sh '''
-                . venv/bin/activate
-                python -m pytest tests/
+                # Run tests using virtualenv Python
+                ./venv/bin/python -m pytest tests/
                 '''
             }
         }
