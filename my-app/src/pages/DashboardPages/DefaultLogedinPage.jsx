@@ -55,12 +55,6 @@ function DefaultLogedinPage({ name, lastName, onNavigate }) {
           </div>
         </div>
 
-        <p className="text-gray-600 mb-6">
-        What would you like to do today?
-      </p>
-
-      <AIAssistantBox onAction={onNavigate} />
-
       </div>
       
     </div>

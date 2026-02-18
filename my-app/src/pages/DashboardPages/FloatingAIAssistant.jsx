@@ -250,7 +250,7 @@ function FloatingAIAssistant({ onAction, onCreateMeeting }) {
 
 
   // =========================
-  // MEETING FLOW (unchanged)
+  // MEETING FLOW
   // =========================
   const handleMeetingFlow = (text) => {
 
@@ -468,15 +468,15 @@ Type YES or NO
           "ai",
           `Okay 👍
 
-Choose next field:
+          Choose next field:
 
-1 Username
-2 Password
-3 Name
-4 Last Name
-5 Email
-0 Save
-9 Discard`
+          1 Username
+          2 Password
+          3 Name
+          4 Last Name
+          5 Email
+          0 Save
+          9 Discard`
         );
 
         setStep("profile_field_choice");
@@ -485,9 +485,9 @@ Choose next field:
       break;
 
 
-    // =====================
+
     // FIELD INPUTS
-    // =====================
+
     case "profile_username":
 
       setProfileDraft(p => ({ ...p, username: text }));
@@ -588,15 +588,15 @@ Choose next field:
         "ai",
         `Saved ✔
 
-Choose next field:
+        Choose next field:
 
-1 Username
-2 Password
-3 Name
-4 Last Name
-5 Email
-0 Save
-9 Discard`
+        1 Username
+        2 Password
+        3 Name
+        4 Last Name
+        5 Email
+        0 Save
+        9 Discard`
       );
 
       setStep("profile_field_choice");
