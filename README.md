@@ -133,48 +133,48 @@ DATA FLOW EXAMPLE: User Creates Meeting
 Get a glimpse of the Meeting Diary interface:
 
 ### Welcome Page
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 *Landing page when opening the app - before login or signup*
 
 ### Authentication
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 *User login interface*
 
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 *User registration page*
 
 ### Main Dashboard
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 *Main dashboard with meeting overview*
 
 ### Calendar View
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 *Interactive calendar showing all scheduled meetings*
 
 ### Meeting Management
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 *View and manage meeting details with participants*
 
-![alt text](image-13.png)
+![alt text](images/image-13.png)
 *add a new meeting*
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 *Edit meeting information modal*
 
 ### Participants
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 *Add and manage meeting participants*
 
 ### AI Assistant
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 *Floating AI assistant for intelligent meeting insights*
 
 ### User Profile
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 *Edit and view user profile information*
 
 ### Meeting History
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 *View past meetings and history*
 
 ---
