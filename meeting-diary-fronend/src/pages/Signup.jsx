@@ -8,7 +8,7 @@ export default function Signup() {
     username: "",
     password: "",
     name: "",
-    last_name: "", // match backend
+    last_name: "", 
     email: "",
   });
   const [error, setError] = useState("");
